@@ -1,0 +1,16 @@
+{
+  "name": "cssbattle",
+  "description": "Local dev environment for CSSbattle inspired by Grafikart",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "astro": "^1.0.9"
+  }
+}

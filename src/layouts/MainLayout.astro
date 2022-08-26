@@ -1,0 +1,48 @@
+---
+const { frontmatter } = Astro.props;
+const { title } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <title>CSSBattle - {frontmatter?.title || title}</title>
+  <style is:global>
+    html,
+    body {
+      font-size: 18px;
+      color: #BCD2E8;
+    }
+
+    body {
+      background: #030B16;
+      padding-top: 40px;
+      font-family: sans-serif;
+    }
+
+    a {
+      color: #6c7c8f;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #58718F;
+    }
+
+    a:visited {
+      color: #6c7c8f;
+    }
+  </style>
+  <slot name="in-head"/>
+</head>
+
+<body>
+  <slot />
+</body>
+
+</html>

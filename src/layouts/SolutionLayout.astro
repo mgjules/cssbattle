@@ -1,0 +1,86 @@
+---
+import MainLayout from "./MainLayout.astro";
+const { title, image } = Astro.props;
+---
+
+<MainLayout title={`#${title}`}>
+  <style is:inline slot="in-head">
+    body {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 400px);
+      justify-content: center;
+      gap: 40px 20px;
+    }
+
+    .body {
+      display: block;
+      margin: 8px;
+      height: inherit;
+    }
+  </style>
+  <style slot="in-head" define:vars={{image:`url(${image})`}}>
+    #main::after {
+      display: none;
+    }
+
+    .canvas {
+      width: 400px;
+      height: 300px;
+      position: relative;
+    }
+
+    .canvas::before {
+      position: absolute;
+      top: -1.4rem;
+      left: 0;
+    }
+
+    #main::before {
+      content: 'Preview';
+    }
+
+    .ref::before {
+      content: 'Reference';
+    }
+
+    .diff::before {
+      content: 'Difference';
+    }
+
+    .overlay::before {
+      content: 'Overlayed';
+    }
+
+    .canvas::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--image) center center / 100% 100% no-repeat;
+    }
+
+    .overlay::after {
+      opacity: .2;
+    }
+
+    .diff::after {
+      mix-blend-mode: difference;
+    }
+  </style>
+  <div class="canvas" id="main">
+    <div class="body">
+      <slot />
+    </div>
+  </div>
+  <div class="canvas ref"></div>
+  <div class="canvas diff"></div>
+  <div class="canvas overlay"></div>
+  <script is:inline>
+    const sourceHTML = document.querySelector('#main').innerHTML
+
+    document.querySelectorAll('.canvas').forEach(c => {
+      c.innerHTML = sourceHTML
+    })
+  </script>
+</MainLayout>

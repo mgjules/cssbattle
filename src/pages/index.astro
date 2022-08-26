@@ -1,0 +1,17 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const solutions = await Astro.glob('./solution/*.astro');
+---
+
+<MainLayout title="Index">
+  <h1>CSSBattle Local Development Environment</h1>
+  <p>Inspired by <a href="https://gist.github.com/Grafikart/b66c512360515b0727f7253a0b6b8f68" target="_blank">Grafikart</a></p>
+  <h2>Solutions</h2>
+  <ul>
+  {solutions.map(solution => (
+    <li><a href={solution.url}>{solution.url}</a></li>
+  ))}
+  </ul>
+</MainLayout>
+
