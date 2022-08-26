@@ -73,14 +73,19 @@ const { title, image } = Astro.props;
       <slot />
     </div>
   </div>
-  <div class="canvas ref"></div>
-  <div class="canvas diff"></div>
-  <div class="canvas overlay"></div>
-  <script is:inline>
-    const sourceHTML = document.querySelector('#main').innerHTML
-
-    document.querySelectorAll('.canvas').forEach(c => {
-      c.innerHTML = sourceHTML
-    })
-  </script>
+  <div class="canvas ref">
+    <div class="body">
+      <slot />
+    </div>
+  </div>
+  <div class="canvas diff">
+    <div class="body">
+      <slot />
+    </div>
+  </div>
+  <div class="canvas overlay">
+    <div class="body">
+      <slot />
+    </div>
+  </div>
 </MainLayout>
